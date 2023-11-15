@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Fragments_4</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next_fragment">Next Fragment</string>
+    <string name="prev_fragment">Turn back</string>
+    <string name="to_first_fragment">Back to start screen</string>
+    <string name="to_second_fragment">Back to second screen</string>
+    <string name="back">Back</string>
+</resources>
