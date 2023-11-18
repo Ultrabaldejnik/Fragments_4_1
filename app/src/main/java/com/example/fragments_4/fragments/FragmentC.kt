@@ -8,16 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import com.example.fragments_4.databinding.FragmentThirdBinding
 import androidx.fragment.app.setFragmentResultListener
 import com.example.fragments_4.R
+import com.example.fragments_4.databinding.FragmentCBinding
 
 
-class ThirdFragment : Fragment() {
+class FragmentC : Fragment() {
 
-    private val binding : FragmentThirdBinding
+    private val binding : FragmentCBinding
         get() = _binding!!
-    private var _binding : FragmentThirdBinding? = null
+    private var _binding : FragmentCBinding? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,7 @@ class ThirdFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentThirdBinding.inflate(inflater, container, false)
+        _binding = FragmentCBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -52,13 +52,13 @@ class ThirdFragment : Fragment() {
     private fun launchNextFragment(){
         parentFragmentManager.commit {
             setReorderingAllowed(true)
-            replace<FourthFragment>(R.id.fragment_container_view,FourthFragment.TAG)
-            addToBackStack(FourthFragment.TAG)
+            replace<FragmentD>(R.id.fragment_container_view,FragmentD.TAG)
+            addToBackStack(FragmentD.TAG)
         }
     }
 
     private fun launchToStartFragment(){
-        parentFragmentManager.popBackStack(SecondFragment.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        parentFragmentManager.popBackStack(FragmentB.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 
     override fun onDestroy() {
@@ -66,9 +66,11 @@ class ThirdFragment : Fragment() {
         _binding = null
     }
 
+    interface OnListenerFragmentC{
+        fun onNextButtonDClicked()
+        fun onBackButtonAClicked()
+    }
     companion object {
         const val TAG = "third_fragment"
-
-
     }
 }

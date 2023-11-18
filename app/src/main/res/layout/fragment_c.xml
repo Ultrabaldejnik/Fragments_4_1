@@ -3,20 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SecondFragment"
+    tools:context=".fragments.FragmentC"
     android:orientation="vertical"
     android:gravity="center">
 
-    <Button
-        android:id="@+id/btn_to_next_fragment"
-        android:text="@string/next_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/btn_to_prev_fragment"
+    <TextView
+        android:id="@+id/tvFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/back"/>
+        tools:text="Fragment"
+        android:textSize="30sp"/>
+    <Button
+        android:id="@+id/btn_to_next_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next_fragment"/>
+    <Button
+        android:id="@+id/btn_to_first_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/to_first_fragment"/>
 
 </LinearLayout>

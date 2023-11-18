@@ -6,20 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import androidx.fragment.app.setFragmentResult
-import com.example.fragments_4.R
-import com.example.fragments_4.databinding.FragmentSecondBinding
+import com.example.fragments_4.databinding.FragmentBBinding
 
 
 
-class SecondFragment : Fragment() {
+class FragmentB : Fragment() {
 
 
-    private val binding : FragmentSecondBinding
+    private val binding : FragmentBBinding
         get() = _binding!!
-    private var _binding : FragmentSecondBinding? = null
+    private var _binding : FragmentBBinding? = null
 
 
 
@@ -32,7 +29,7 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentBBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,26 +37,14 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding){
             btnToNextFragment.setOnClickListener {
-                launchNextFragment()
+                val text = "Hello Fragment C"
+                setFragmentResult("requestKey", bundleOf("bundleKey" to text))
+                (requireActivity() as OnListenerFragmentB).onNextButtonCClicked()
             }
             btnToPrevFragment.setOnClickListener {
-                launchBackFragment()
+                (requireActivity() as OnListenerFragmentB).onBackButtonClicked()
             }
         }
-    }
-
-    private fun launchNextFragment(){
-        val text = "Hello Fragment C"
-        setFragmentResult("requestKey", bundleOf("bundleKey" to text))
-        parentFragmentManager.commit {
-            setReorderingAllowed(true)
-            replace<ThirdFragment>(R.id.fragment_container_view, ThirdFragment.TAG)
-            addToBackStack(ThirdFragment.TAG)
-        }
-    }
-
-    private fun launchBackFragment(){
-        parentFragmentManager.popBackStack()
     }
 
     override fun onDestroy() {
@@ -68,11 +53,12 @@ class SecondFragment : Fragment() {
 
     }
 
+    interface OnListenerFragmentB{
+        fun onNextButtonCClicked()
+        fun onBackButtonClicked()
+    }
+
     companion object{
         const val TAG = "second_fragment"
-
-        fun newInstance(): SecondFragment {
-            return SecondFragment()
-        }
     }
 }
