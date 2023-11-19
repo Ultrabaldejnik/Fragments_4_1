@@ -2,6 +2,7 @@ package com.example.fragments_4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity(), FragmentA.OnListenerFragmentA,
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             add<FragmentA>(R.id.fragment_container_view, FragmentA.TAG)
-            addToBackStack(FragmentA.TAG)
         }
     }
 
@@ -64,15 +64,13 @@ class MainActivity : AppCompatActivity(), FragmentA.OnListenerFragmentA,
     }
 
     override fun onBackButtonDClicked() {
-        supportFragmentManager.commit {
-            supportFragmentManager.popBackStack(FragmentC.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        }
+        supportFragmentManager.popBackStack(FragmentC.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 
     override fun onBackPressed() {
         val currentFragment = supportFragmentManager.fragments.last()
-        when(currentFragment){
-            is FragmentA -> finish()
+        Log.d("Fragment",currentFragment.tag.toString())
+        when (currentFragment) {
             is FragmentB -> onBackButtonAClicked()
             is FragmentC -> onBackButtonClicked()
             is FragmentD -> onBackButtonDClicked()
